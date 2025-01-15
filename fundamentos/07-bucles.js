@@ -1,7 +1,7 @@
 //Bucles
 
 //while (mientras)
-let num = 1;
+let num = 11;
 // while (num < 10) {
 //   console.log(num);
 //   num++;
@@ -36,7 +36,7 @@ Escribe un programa que pida una contraseña al usuario repetidamente hasta que 
 */
 
 let password = "1234";
-let userPassword = "";
+let userPassword = "1234";
 
 // while (userPassword !== password) {
 //   userPassword = prompt("Introduce la contraseña");
@@ -70,21 +70,22 @@ for (let i = 0; i < 10; i++) {
 let tabla = null;
 // for (let i = 1; i <= 10; i++) {
 //   console.log(`${tabla} x ${i} = ${tabla * i}`);
+
 // }
 
-// do {
-//   tabla = Number(prompt("Ingrese la tabla a calcular"));
-//   console.log(tabla);
-//   if (isNaN(tabla)) {
-//     console.error("Solo se pueden ingresar números mayores que cero :(");
-//   } else if (tabla > 0) {
-//     for (let i = 1; i <= 10; i++) {
-//       console.log(`${tabla} x ${i} = ${tabla * i}`);
-//     }
-//   } else {
-//     console.warn("Amigo! escribí un numerito más grande que el cero :)");
-//   }
-// } while (tabla > 0);
+do {
+  tabla = Number(prompt("Ingrese la tabla a calcular"));
+  console.log(tabla);
+  if (isNaN(tabla)) {
+    console.error("Solo se pueden ingresar números mayores que cero :(");
+  } else if (tabla > 0) {
+    for (let i = 1; i <= 10; i++) {
+      console.log(`${tabla} x ${i} = ${tabla * i}`);
+    }
+  } else {
+    console.warn("Amigo! escribí un numerito más grande que el cero :)");
+  }
+} while (tabla > 0);
 
 //trivia
 /*
@@ -96,10 +97,25 @@ Si terminan los 3 intentos y no respondemos bien PERDEMOS
 */
 
 const respuestaCorrecta = "París";
+
 let intentos = 3;
 let respuestaUsuario = "";
 
 do {
   respuestaUsuario = prompt("¿Cuál es la capital de Francia?");
   intentos--;
+  if (respuestaUsuario !== null) {
+    //evalueo la respuesta
+    if (respuestaUsuario.toUpperCase() === respuestaCorrecta.toUpperCase()) {
+      console.log("GANASTE!! IDOL@");
+      intentos = 0;
+    } else if (intentos > 0) {
+      alert(`Respuesta incorrecta, te quedan ${intentos} intentos`);
+    } else {
+      console.error("PERDISTE LOSER!!");
+    }
+  } else {
+    console.error("Me cancelaste!!");
+    intentos = 0;
+  }
 } while (intentos > 0);
