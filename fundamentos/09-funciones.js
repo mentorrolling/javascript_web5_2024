@@ -89,17 +89,6 @@ function saludarPersonaDefault(nombre = "Invitado") {
 //detener la ejecución de una función
 // Devolver un valor o resultado
 
-//datos de entrada
-//15% de descuento
-
-const calcularDescuento = function (precio, descuento = 15) {
-  let descuentoCalculado = 100 - descuento;
-  let montoConDescuento = (precio * descuentoCalculado) / 100;
-  return montoConDescuento;
-};
-
-console.log(`El importe a abonar es de $${calcularDescuento(4500)}`);
-
 //Scope o Ambito
 
 //scope global
@@ -153,7 +142,7 @@ const getProductArrow = (indice = 0) => productos[indice];
 //bloques de código reutilizables que se pueden llamar en cualquier momento
 
 //Declarativas
-let nombres = ["Joaquín", "Juan", "Lucho"];
+let alumnos = ["Joaquín", "Juan", "Lucho"];
 let personas = ["Pepe", "Ludovico", "Alfred"];
 let activo = true;
 
@@ -192,7 +181,7 @@ document.write(saludarAnonima("María"));
 const saludarAnonimaArrow = (nombre) => `Hola ${nombre}`;
 
 const listarAlumnos = () => {
-  for (let i = 0; i < nombres.length; i++) {
+  for (let i = 0; i < alumnos.length; i++) {
     console.log(`${i + 1} - ${nombres[i]}`);
   }
 };
