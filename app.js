@@ -1,23 +1,56 @@
-/*
-Dado un array de números crear un programa que pida al usuario ingresar un número y verificar si existe en el arreglo. Si es así dar un mensaje como el siguiente "Adivinaste el número"
-*/
+//Callbacks
+// funciones que se envian como parámetros a otra función
 
-let numeros = [7, 9, 11, 15, 78, 30, 49, 24700, 300];
+let numeros = [23, 2, 34, 56, 3, 80, 8];
 
-let numeroUsuario = Number(prompt("Ingrese un número"));
+console.log(numeros.sort((ant, sig) => ant - sig));
 
-if (numeros.includes(numeroUsuario)) {
-  console.log("Adivinaste el número 😉");
-} else {
-  console.log("No adivinaste el número Loser!");
-}
+//filter
+let pares = numeros.filter((numero) => numero % 2 === 0);
+let mayores50 = numeros.filter((item) => item > 50);
 
-//Ejercicio
-//----------
-// Crear un script que solicite al usuario mediante un prompt el nombre de ciudades y almacenarlas en un arreglo, cuando el usuario selecciona cancelar o deja el campo vacio se debe mostrar el arreglo generado, luego realizar las siguientes acciones:
+const peliculas2024 = [
+  "Dune: Parte Dos",
+  "Memorias de un caracol",
+  "Anora",
+  "La zona de interés",
+  "Joker: Folie à Deux",
+  "Gladiator II",
+  "Nosferatu",
+  "Furiosa: De la saga Mad Max",
+  "El señor de los anillos: La guerra de los Rohirrim",
+  "Pobres criaturas",
+];
 
-// Mostrar la longitud del arreglo.
-// Mostrar en el documento web los ítems de las posiciones primera, tercera y última.
-// Añade en última posición la ciudad de París.
-// Escribe por pantalla el elemento que ocupa la segunda posición.
-// Sustituye el elemento que ocupa la segunda posición por la ciudad de 'Barcelona' usando splice.
+const buscarPelis = (termino) => {
+  return peliculas2024.filter((titulo) =>
+    titulo.toLowerCase().includes(termino.toLowerCase())
+  );
+};
+
+//find
+//devuelve el primer elemento que coincide con la condición
+let alumnos = ["Jimena", "Romina", "Alfredo", "Gabriela", "Alfredo"];
+let resultadoBusqueda = alumnos.find((alumno) => alumno === "Alfredo");
+
+let buscarNumero = numeros.find((num) => num > 200);
+
+//findIndex
+
+const encontrarPorIndice = () => {
+  let indice = alumnos.findIndex((alumno) => alumno === "Pablo");
+
+  if (indice >= 0) {
+    console.log("El registro existe");
+  } else {
+    console.log("El registro no existe");
+  }
+};
+
+//forEach
+alumnos.forEach((alumno, index) =>
+  console.log(`${index + 1} - ${alumno.toUpperCase()}`)
+);
+
+//map
+const alumnosMayus = alumnos.map((alumno) => alumno.toUpperCase());

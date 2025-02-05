@@ -148,3 +148,96 @@ const calcularDescuentoArrow = (precio, descuento = 15) => {
 };
 
 const getProductArrow = (indice = 0) => productos[indice];
+
+//Funciones
+//bloques de código reutilizables que se pueden llamar en cualquier momento
+
+//Declarativas
+let nombres = ["Joaquín", "Juan", "Lucho"];
+let personas = ["Pepe", "Ludovico", "Alfred"];
+let activo = true;
+
+saludar("José");
+
+function saludar(nombre) {
+  //acciones
+  console.log(`Hola ${nombre}`);
+}
+
+function saludarArray(array) {
+  //acciones
+  for (let i = 0; i < array.length; i++) {
+    console.log(`Hola ${array[i]}`);
+  }
+}
+
+function mensajeActivo(valor) {
+  if (valor === true) {
+    console.log("Estamos activos");
+  } else {
+    console.log("No me llames!!");
+  }
+}
+
+//Anónimas
+
+const saludarAnonima = function (nombre) {
+  //acciones
+  return `Hola ${nombre}`;
+};
+
+document.write(saludarAnonima("María"));
+
+// Arrow Function
+const saludarAnonimaArrow = (nombre) => `Hola ${nombre}`;
+
+const listarAlumnos = () => {
+  for (let i = 0; i < nombres.length; i++) {
+    console.log(`${i + 1} - ${nombres[i]}`);
+  }
+};
+
+/*
+Crea una función que reciba dos parámetros, un monto y el descuento que se le debe hacer. Debe retornar el valor con el descuento aplicado.
+
+Modifica la función para que solo reciba como parámetro un valor y según la cantidad ingresada le haga un descuento del 15%, 25% o 50%. Debe retornar el monto con el descuento aplicado.
+
+Algoritmo:
+valores de entrada -> monto (10000) y descuento (20)
+procesos: 
+monto por 20 dividido en 100 -> descuento
+monto - descuento
+Salida: monto a pagar con descuento
+
+<=10000 -> 15%
+<=30000 -> 25%
+>30000 -> 50%
+
+*/
+
+const calcularDescuento = (monto, descuento) => {
+  let descuentoCalculado = (monto * descuento) / 100;
+  let montoConDescuento = monto - descuentoCalculado;
+
+  return montoConDescuento;
+};
+
+const calcularDescuentoCondicional = (monto) => {
+  // let descuentoCalculado = 0;
+  // let montoConDescuento = 0;
+  if (monto <= 10000) {
+    // descuentoCalculado = (monto * 15) / 100;
+    // montoConDescuento = monto - descuentoCalculado;
+    console.log(calcularDescuento(monto, 15));
+  } else if (monto <= 30000) {
+    // descuentoCalculado = (monto * 25) / 100;
+    // montoConDescuento = monto - descuentoCalculado;
+    console.log(calcularDescuento(monto, 25));
+  } else {
+    // descuentoCalculado = (monto * 50) / 100;
+    // montoConDescuento = monto - descuentoCalculado;
+    console.log(calcularDescuento(monto, 50));
+  }
+
+  // return montoConDescuento;
+};
