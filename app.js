@@ -38,7 +38,7 @@
 //   },
 // ];
 
-let peliculas = JSON.parse(localStorage.getItem("peliculas"));
+let peliculas = JSON.parse(localStorage.getItem("peliculas")) || [];
 
 const almacenarPelis = () => {
   localStorage.setItem("peliculas", JSON.stringify(peliculas));
@@ -96,14 +96,14 @@ const agregarPeli = (
 //   return peliculas;
 // };
 
-agregarPeli(
-  "El Señor de los Anillos: La Comunidad del Anillo",
-  "Peter Jackson",
-  2001,
-  "Fantasía/Aventura",
-  178,
-  8.8
-);
+// agregarPeli(
+//   "El Señor de los Anillos: La Comunidad del Anillo",
+//   "Peter Jackson",
+//   2001,
+//   "Fantasía/Aventura",
+//   178,
+//   8.8
+// );
 
 //leer los datos
 /*
@@ -113,17 +113,26 @@ salida: lista de películas en consola
 */
 
 const mostrarPelis = () => {
-  peliculas = JSON.parse(localStorage.getItem("peliculas"));
+  // peliculas = JSON.parse(localStorage.getItem("peliculas"));
 
   console.log("Lista de Películas");
   console.log("===================");
-  peliculas.forEach((item) => {
-    console.log(`Título: ${item.titulo}`);
-    console.log(`Año: ${item.anio}`);
-    console.log(`Calificación: ${item.calificacion}`);
+
+  for (let i = 0; i < peliculas.length; i++) {
+    console.log(`Título: ${peliculas[i].titulo}`);
+    console.log(`Año: ${peliculas[i].anio}`);
+    console.log(`Calificación: ${peliculas[i].calificacion}`);
     console.log("------------------------------");
-  });
+  }
   console.log("Total de películas: " + peliculas.length);
+
+  // peliculas.forEach((item) => {
+  //   console.log(`Título: ${item.titulo}`);
+  //   console.log(`Año: ${item.anio}`);
+  //   console.log(`Calificación: ${item.calificacion}`);
+  //   console.log("------------------------------");
+  // });
+  // console.log("Total de películas: " + peliculas.length);
 };
 
 //Borrar un elemento del array
@@ -151,7 +160,41 @@ const borrarPeli = (id) => {
 };
 
 const buscarPeli = (termino) => {
+  //'El'
   return peliculas.filter((peli) =>
     peli.titulo.toLowerCase().includes(termino.toLowerCase())
   );
 };
+
+//Modificar Pelis
+
+//Buscador flexible
+const buscarFlexPelis = (prop = "titulo", termino = "") => {
+  const props = ["titulo", "genero", "director"];
+
+  let validar = props.includes(prop);
+  if (validar) {
+    return peliculas.filter((peli) =>
+      peli[prop].toLowerCase().includes(termino.toLowerCase())
+    );
+  } else {
+    return "No se encontraron datos :( ";
+  }
+};
+
+//Buscar por rango
+const buscarPorRango = (propiedad, min, max) => {
+  const props = ["anio", "duracion", "calificacion"];
+
+  let validar = props.includes(propiedad);
+
+  if (validar) {
+    return peliculas.filter(
+      (peli) => peli[propiedad] >= min && peli[propiedad] <= max
+    );
+  } else {
+    return "No se encontraron datos :( ";
+  }
+};
+
+//Ordenar por calificación
