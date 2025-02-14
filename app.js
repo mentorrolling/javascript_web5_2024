@@ -198,3 +198,31 @@ const buscarPorRango = (propiedad, min, max) => {
 };
 
 //Ordenar por calificación
+
+const mostrarMensaje = () => {
+  alert("Hiciste click!");
+};
+
+document
+  .getElementById("formPelicula")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+    let titulo = document.getElementById("titulo").value;
+    let director = document.getElementById("director").value;
+    let anio = document.getElementById("anio").value;
+    let genero = document.getElementById("genero").value;
+    let duracion = document.getElementById("duracion").value;
+    let calificacion = document.getElementById("calificacion").value;
+
+    let validar = peliculas.find((peli) => peli.titulo === titulo);
+
+    if (validar) {
+      alert("La peli ya existe");
+    } else {
+      agregarPeli(titulo, director, anio, genero, duracion, calificacion);
+
+      alert("La peli se guardó");
+    }
+    document.getElementById("formPelicula").reset();
+    document.getElementById("titulo").focus();
+  });
