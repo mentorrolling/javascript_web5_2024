@@ -1,44 +1,44 @@
 // //array de objetos
-// let peliculas = [
-//   {
-//     id: 1,
-//     titulo: "El Padrino",
-//     director: "Francis Ford Coppola",
-//     anio: 1972,
-//     genero: "Drama/Crimen",
-//     duracion: 175,
-//     calificacion: 9.2,
-//   },
-//   {
-//     id: 2,
-//     titulo: "El Caballero de la Noche",
-//     director: "Christopher Nolan",
-//     anio: 2008,
-//     genero: "Acción/Crimen",
-//     duracion: 152,
-//     calificacion: 9.0,
-//   },
-//   {
-//     id: 3,
-//     titulo: "Pulp Fiction",
-//     director: "Quentin Tarantino",
-//     anio: 1994,
-//     genero: "Drama/Crimen",
-//     duracion: 154,
-//     calificacion: 8.9,
-//   },
-//   {
-//     id: 4,
-//     titulo: "La Lista de Schindler",
-//     director: "Steven Spielberg",
-//     anio: 1993,
-//     genero: "Drama/Historia",
-//     duracion: 195,
-//     calificacion: 8.9,
-//   },
-// ];
+let peliculas = [
+  {
+    id: 1,
+    titulo: "El Padrino",
+    director: "Francis Ford Coppola",
+    anio: 1972,
+    genero: "Drama/Crimen",
+    duracion: 175,
+    calificacion: 9.2,
+  },
+  {
+    id: 2,
+    titulo: "El Caballero de la Noche",
+    director: "Christopher Nolan",
+    anio: 2008,
+    genero: "Acción/Crimen",
+    duracion: 152,
+    calificacion: 9.0,
+  },
+  {
+    id: 3,
+    titulo: "Pulp Fiction",
+    director: "Quentin Tarantino",
+    anio: 1994,
+    genero: "Drama/Crimen",
+    duracion: 154,
+    calificacion: 8.9,
+  },
+  {
+    id: 4,
+    titulo: "La Lista de Schindler",
+    director: "Steven Spielberg",
+    anio: 1993,
+    genero: "Drama/Historia",
+    duracion: 195,
+    calificacion: 8.9,
+  },
+];
 
-let peliculas = JSON.parse(localStorage.getItem("peliculas")) || [];
+// let peliculas = JSON.parse(localStorage.getItem("peliculas")) || [];
 
 const almacenarPelis = () => {
   localStorage.setItem("peliculas", JSON.stringify(peliculas));
@@ -166,8 +166,6 @@ const buscarPeli = (termino) => {
   );
 };
 
-//Modificar Pelis
-
 //Buscador flexible
 const buscarFlexPelis = (prop = "titulo", termino = "") => {
   const props = ["titulo", "genero", "director"];
@@ -199,6 +197,29 @@ const buscarPorRango = (propiedad, min, max) => {
 
 //Ordenar por calificación
 
+//Modificar Pelis
+/*
+Algoritmo:
+entrada: id, datos a modificar
+proceso: busco peli con su id, reemplazo los datos originales con los nuevos
+salida: array actualizado con la película modificada
+
+datos-> {titulo:'',director:''}
+*/
+
+const modificarPeli = (id, datos) => {
+  let pelicula = peliculas.find((peli) => peli.id === id);
+  //datos debe ser un objeto con propiedades de peliculas. ejemplo {titulo:'batman',director:'pablito'}
+  if (pelicula) {
+    Object.assign(pelicula, datos);
+    // console.log(pelicula);
+    // console.log(peliculas);
+  } else {
+    console.warn("No se encontró la película");
+  }
+};
+
+//Función para usar botón
 const mostrarMensaje = () => {
   alert("Hiciste click!");
 };
@@ -226,3 +247,19 @@ document
     document.getElementById("formPelicula").reset();
     document.getElementById("titulo").focus();
   });
+
+document.getElementById("searchTitle").addEventListener("submit", (event) => {
+  event.preventDefault();
+  // console.log(event);
+  let texto = document.getElementById("buscar-title").value;
+  // console.log(buscarFlexPelis("titulo", texto));
+
+  let resultadoDeBusqueda = buscarFlexPelis("titulo", texto);
+  if (resultadoDeBusqueda.length > 0) {
+    document.getElementById("resultado").innerText =
+      JSON.stringify(resultadoDeBusqueda);
+  } else {
+    document.getElementById("resultado").innerText =
+      "No se encontraron resultados";
+  }
+});

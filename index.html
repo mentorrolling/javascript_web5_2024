@@ -15,6 +15,22 @@
       <button class="btn btn-warning" onclick="mostrarMensaje()">
         Click me!!
       </button>
+
+      <div class="row">
+        <div class="col my-5">
+          <h3>Buscador</h3>
+          <form id="searchTitle">
+            <input
+              id="buscar-title"
+              class="form-control"
+              type="text"
+              placeholder="ingrese el título de la película a buscar"
+            />
+          </form>
+
+          <span id="resultado"></span>
+        </div>
+      </div>
       <form id="formPelicula" class="row g-3">
         <!-- Título -->
         <div class="col-md-6">
@@ -87,18 +103,6 @@
           </button>
         </div>
       </form>
-      <div class="row">
-        <div class="col mt-3">
-          <form id="buscarTitle">
-            <input
-              id="buscar-title"
-              class="form-control"
-              type="text"
-              placeholder="ingrese el título de la película a buscar"
-            />
-          </form>
-        </div>
-      </div>
     </div>
 
     <!-- <script></script> -->
