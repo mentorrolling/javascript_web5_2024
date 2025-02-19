@@ -1,44 +1,44 @@
-// //array de objetos
-let peliculas = [
-  {
-    id: 1,
-    titulo: "El Padrino",
-    director: "Francis Ford Coppola",
-    anio: 1972,
-    genero: "Drama/Crimen",
-    duracion: 175,
-    calificacion: 9.2,
-  },
-  {
-    id: 2,
-    titulo: "El Caballero de la Noche",
-    director: "Christopher Nolan",
-    anio: 2008,
-    genero: "Acción/Crimen",
-    duracion: 152,
-    calificacion: 9.0,
-  },
-  {
-    id: 3,
-    titulo: "Pulp Fiction",
-    director: "Quentin Tarantino",
-    anio: 1994,
-    genero: "Drama/Crimen",
-    duracion: 154,
-    calificacion: 8.9,
-  },
-  {
-    id: 4,
-    titulo: "La Lista de Schindler",
-    director: "Steven Spielberg",
-    anio: 1993,
-    genero: "Drama/Historia",
-    duracion: 195,
-    calificacion: 8.9,
-  },
-];
+// // //array de objetos
+// let peliculas = [
+//   {
+//     id: 1,
+//     titulo: "El Padrino",
+//     director: "Francis Ford Coppola",
+//     anio: 1972,
+//     genero: "Drama/Crimen",
+//     duracion: 175,
+//     calificacion: 9.2,
+//   },
+//   {
+//     id: 2,
+//     titulo: "El Caballero de la Noche",
+//     director: "Christopher Nolan",
+//     anio: 2008,
+//     genero: "Acción/Crimen",
+//     duracion: 152,
+//     calificacion: 9.0,
+//   },
+//   {
+//     id: 3,
+//     titulo: "Pulp Fiction",
+//     director: "Quentin Tarantino",
+//     anio: 1994,
+//     genero: "Drama/Crimen",
+//     duracion: 154,
+//     calificacion: 8.9,
+//   },
+//   {
+//     id: 4,
+//     titulo: "La Lista de Schindler",
+//     director: "Steven Spielberg",
+//     anio: 1993,
+//     genero: "Drama/Historia",
+//     duracion: 195,
+//     calificacion: 8.9,
+//   },
+// ];
 
-// let peliculas = JSON.parse(localStorage.getItem("peliculas")) || [];
+let peliculas = JSON.parse(localStorage.getItem("peliculas")) || [];
 
 const almacenarPelis = () => {
   localStorage.setItem("peliculas", JSON.stringify(peliculas));
@@ -222,6 +222,21 @@ const modificarPeli = (id, datos) => {
 //Función para usar botón
 const mostrarMensaje = () => {
   alert("Hiciste click!");
+};
+
+//Tabla de películas
+const cargarTabla = () => {
+  let cuerpoTabla = document.getElementById("cuerpo-tabla");
+  peliculas.forEach((peli) => {
+    let fila = document.createElement("tr");
+    let celdas = `<th scope="row">${peli.id}</th>
+                <td>${peli.titulo}</td>
+                <td>${peli.genero}</td>
+                <td>${peli.calificacion}</td>`;
+
+    fila.innerHTML = celdas;
+    cuerpoTabla.append(fila);
+  });
 };
 
 document
